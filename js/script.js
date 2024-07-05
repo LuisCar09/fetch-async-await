@@ -27,14 +27,16 @@ const fetchPokemon = async (URL = 'https://pokeapi.co/api/v2/pokemon/?offset=00&
 
 const template = (pokemon) => {
     
-    console.log(pokemon);
+ 
+    
     let element = ''
     // const fistLetter = name.split('')[0].toUpperCase()
     // const restOfLetter = name.slice(1)
     // const fullName = fistLetter + restOfLetter
-    pokemon.forEach((poke,index) => {
+    pokemon.forEach(async(poke,index) => {
         const { name } = poke
         const { sprites } = poke
+        
         element = `
                 <article  class='card '>
                     <img src="${sprites.other.dream_world.front_default}" alt="${name}">
@@ -61,7 +63,7 @@ const template = (pokemon) => {
         })
         
     })
-    checkList()
+     checkList()
 
     
     
@@ -89,15 +91,16 @@ const getInputValue = async () => {
         const fetchPokemon = await fetch(`${API}/${name}`)
         const response = await fetchPokemon.json()
         appContainer.innerHTML = ''
-        template(response)
+        
+        template([response])
     } catch (error) {
         console.error('Error fetching  at getInputValue ', error);
-    } finally {
-        let element = `<article class='card'>
-                        <img src="https://cdn.vectorstock.com/i/2000v/87/74/website-error-404-page-not-found-artwork-depicts-vector-23988774.avif" alt="not-found-image">
-                     </article>`
-        appContainer.innerHTML = element
-    }
+    }// finally {
+    //     let element = `<article class='card'>
+    //                     <img src="https://cdn.vectorstock.com/i/2000v/87/74/website-error-404-page-not-found-artwork-depicts-vector-23988774.avif" alt="not-found-image">
+    //                  </article>`
+    //     appContainer.innerHTML = element
+    // }
 }
 nextBtn.addEventListener('click', nextPageFunction)
 previousBtn.addEventListener('click', previousPageFunction)
@@ -113,7 +116,8 @@ const checkList = () => {
 
     pokemons.forEach((poke) => {
         const overLay = document.getElementById(poke)
-        overLay.classList.add('border')
+        overLay ? overLay.classList.add('border') : null
+        
         
     })
     

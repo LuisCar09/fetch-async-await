@@ -35,19 +35,6 @@ const template = async(pokemon) => {
                 </article>`
                 appContainer.insertAdjacentHTML('beforeend',element) 
 
-
-        // const imgClick = document.querySelectorAll('.overLay')[index]
-        // imgClick.addEventListener('click',(e) =>{
-        //    const pokemonName = e.target.id
-            
-        //    const getLocalStorage = localStorage.getItem('pokemons')
-            
-        //    let arrayPokemons =  getLocalStorage ? JSON.parse(getLocalStorage) : []
-        //     !arrayPokemons.includes(pokemonName) ? arrayPokemons.push(pokemonName) : null
-           
-           
-        //     localStorage.setItem('pokemons',JSON.stringify(arrayPokemons))
-        // })
     })
      
     
